@@ -1,0 +1,47 @@
+name: 使用求助 / Question
+description: 描述想完成的事、卡住的步骤和已尝试的方法。
+title: "[Question] "
+labels: ["question", "status: needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        可以中文或英文提问，不需要先运行测试套件，不知道版本可写“不知道”。
+        请勿上传 API key、带 token 的 URL、微信凭据、真实税号或银行卡号、
+        未脱敏票据、账本数据库、完整私人聊天记录。日志和截图不是必需品。
+        安全漏洞请通过 SECURITY.md 的私密渠道报告。
+        Questions are welcome. Never share credentials, private ledgers, or unredacted financial records.
+  - type: textarea
+    id: goal
+    attributes:
+      label: 正在完成什么 / Goal
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: 参考了什么文档 / Documentation consulted
+      description: 可写文档标题与章节；没找到文档也请直接说明。
+    validations:
+      required: false
+  - type: textarea
+    id: blocked-step
+    attributes:
+      label: 卡在哪一步 / Where are you stuck?
+      description: 描述步骤和看到的提示；只附最小的脱敏片段。
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: 环境与版本 / Environment and versions
+      description: 系统、插件、DSH、Node 版本与网页或微信通道；未知项写“不知道”。
+    validations:
+      required: true
+  - type: textarea
+    id: attempts
+    attributes:
+      label: 已尝试的方法 / What have you tried?
+      description: 没有尝试也可直接写“尚未尝试”。
+    validations:
+      required: false
