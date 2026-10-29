@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 社区讨论 / Discussions
+    url: https://github.com/qianlai-ai/dsh-qianlai/discussions
+    about: 开放讨论、问答与案例；请使用合成数据。
+  - name: 私密安全报告 / Private security report
+    url: https://github.com/qianlai-ai/dsh-qianlai/security/advisories/new
+    about: 安全漏洞请私密报告，不在公开 Issue 披露详情。

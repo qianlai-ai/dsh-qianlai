@@ -1,0 +1,57 @@
+[
+  {
+    "name": "bug",
+    "color": "d73a4a",
+    "description": "故障或财务结果差异 / Bug or accounting discrepancy"
+  },
+  {
+    "name": "enhancement",
+    "color": "a2eeef",
+    "description": "功能建议 / Feature request"
+  },
+  {
+    "name": "question",
+    "color": "d876e3",
+    "description": "使用求助 / Usage question"
+  },
+  {
+    "name": "documentation",
+    "color": "0075ca",
+    "description": "文档与双语校对 / Documentation"
+  },
+  {
+    "name": "status: needs-triage",
+    "color": "fbca04",
+    "description": "待维护者分类 / Awaiting triage"
+  },
+  {
+    "name": "status: needs-info",
+    "color": "fef2c0",
+    "description": "需要补充信息 / More information needed"
+  },
+  {
+    "name": "status: accepted",
+    "color": "0e8a16",
+    "description": "维护者已接受 / Accepted for work"
+  },
+  {
+    "name": "good first issue",
+    "color": "7057ff",
+    "description": "目标、位置与验收明确的入门任务 / Defined starter task"
+  },
+  {
+    "name": "help wanted",
+    "color": "008672",
+    "description": "欢迎协助 / Contributions welcome"
+  },
+  {
+    "name": "duplicate",
+    "color": "cfd3d7",
+    "description": "已有相同问题，附关联 / Duplicate with reference"
+  },
+  {
+    "name": "wontfix",
+    "color": "ffffff",
+    "description": "解释原因后不实施 / Not planned with explanation"
+  }
+]

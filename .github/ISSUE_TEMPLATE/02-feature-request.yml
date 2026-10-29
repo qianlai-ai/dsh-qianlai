@@ -1,0 +1,53 @@
+name: 功能建议 / Feature request
+description: 说明一个使用场景、遇到的困难和期望行为。
+title: "[Feature] "
+labels: ["enhancement", "status: needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        欢迎中文或英文。建议不等于已承诺的功能或发布日期。
+        请勿上传 API key、带 token 的 URL、微信凭据、真实税号或银行卡号、
+        未脱敏票据、账本数据库、完整私人聊天记录。请使用虚构业务案例。
+        安全漏洞请通过 SECURITY.md 的私密渠道报告。
+        Use synthetic examples and do not include private financial information or credentials.
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 使用场景 / Context
+      description: 你在什么情况下需要这个能力？不需要写真实企业名称。
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 目前的困难 / Problem
+      description: 当前在哪一步受阻，带来什么影响？
+    validations:
+      required: true
+  - type: textarea
+    id: desired
+    attributes:
+      label: 期望行为 / Desired outcome
+      description: 希望能完成什么？一次聚焦一个建议。
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 替代方案 / Alternatives
+      description: 已尝试的方法或其他方案；没有可留空。
+    validations:
+      required: false
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: 是否愿意协助 / Would you like to help?
+      options:
+        - 暂不确定 / Not sure
+        - 愿意提供虚构案例或反馈 / Examples or feedback
+        - 愿意补充文档或测试 / Documentation or tests
+        - 愿意讨论实现 / Implementation
+        - 暂时不能 / Not at the moment
+    validations:
+      required: false

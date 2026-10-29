@@ -1,0 +1,94 @@
+name: 故障报告 / Bug report
+description: 报告一个可描述的故障或财务结果差异，可用中文或英文。
+title: "[Bug] "
+labels: ["bug", "status: needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        一条 Issue 只描述一个问题。无需先跑测试套件；不知道版本可写“不知道”。
+        请勿上传 API key、带 token 的访问 URL、微信凭据、真实税号或银行卡号、
+        未脱敏票据、账本数据库、完整私人聊天记录。日志和截图均为可选。
+        财务差异请使用虚构案例，把预期金额或分录写入“预期”，观察值写入“实际”。
+        安全漏洞请按仓库 SECURITY.md 的私密渠道报告，不在此公开详情。
+        One issue per problem. Use synthetic data; never share credentials or private financial records.
+  - type: input
+    id: record-id
+    attributes:
+      label: 【编号】
+      description: "已有编号请填；首次报告可留空。提交后维护者使用 GitHub Issue 的 #数字登记，表单不会自动生成自定义编号。"
+      placeholder: 待登记
+    validations:
+      required: false
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 【级别】
+      description: 暂不确定也可提交，维护者分流时复核。级别不表示承诺修复日期。
+      options:
+        - 暂不确定
+        - S1 严重：核心流程阻断，或账务结果可能错误且无可靠绕过方法
+        - S2 一般：部分功能异常，有可行绕过方法
+        - S3 轻微：文案、显示或文档问题，不影响账务结果
+    validations:
+      required: true
+  - type: input
+    id: test-item
+    attributes:
+      label: 【对应测试项】
+      description: 已有测试或检查项请填写真实名称；没有时写“不适用：来自日常使用反馈”等原因。无需运行完整测试套件。
+      placeholder: 不适用：来自日常使用反馈
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 【环境】
+      description: 写已知的系统、插件版本或提交、DSH、Node 版本，以及网页或微信通道；不知道的版本可直说。不要贴带 token 的 URL。
+      placeholder: 系统、插件版本、DSH 版本、Node 版本、使用通道；未知项写“不知道”。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 【操作步骤】
+      description: 按 1、2、3 写实际做过的操作；静态发现请写实际检查文件的步骤。没执行的复现步骤须说明。
+      placeholder: |
+        1. 我先……
+        2. 然后……
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 【预期】
+      description: 单独写期望发生什么。涉及金额或分录时只使用虚构数据。
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 【实际】
+      description: 写实际观察结果；区分事实、推测与未验证影响。请勿只写“有问题”。
+    validations:
+      required: true
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: 【能否复现】
+      description: 选择实际状态。静态发现、尚未尝试运行时复现时请选择“未验证”。
+      options:
+        - 未验证
+        - 每次可复现
+        - 间歇可复现
+        - 本次观察到，尚未再次复现
+        - 目前无法复现
+    validations:
+      required: true
+  - type: textarea
+    id: attachments
+    attributes:
+      label: 【附件】
+      description: 可留空或写“无”。仅附最小且脱敏的日志、截图、合成案例，写清各附件用途。不要上传账本或登录文件。
+    validations:
+      required: false
