@@ -1,0 +1,59 @@
+diff --git a/packages/fintax-core/tests/arch/no-domain-constants.spec.ts b/packages/fintax-core/tests/arch/no-domain-constants.spec.ts
+index e48df05..e32e804 100644
+--- a/packages/fintax-core/tests/arch/no-domain-constants.spec.ts
++++ b/packages/fintax-core/tests/arch/no-domain-constants.spec.ts
+@@ -17,10 +17,15 @@
+  */
+ 
+ import { readFileSync, readdirSync, statSync } from 'node:fs';
+-import { join } from 'node:path';
++import { join, relative, sep } from 'node:path';
+ 
+ const PKG_ROOT = join(import.meta.dirname, '..', '..');
+ 
++/** 文件读写保留原生路径；扫描名单比较统一使用包内的正斜杠相对路径。 */
++function packageRelativePath(file: string): string {
++  return relative(PKG_ROOT, file).split(sep).join('/');
++}
++
+ /**
+  * 扫描范围：`src/` 全量。
+  *
+@@ -168,19 +173,25 @@ function findViolations(
+ }
+ 
+ describe('A1 · L3 通用引擎零领域常量', () => {
++  it('中文和空格目录也能得到统一的包内相对路径', () => {
++    expect(
++      packageRelativePath(join(PKG_ROOT, 'src', '中文 目录', 'probe.ts')),
++    ).toBe('src/中文 目录/probe.ts');
++  });
++
+   it.each(SCANNED_SRC_DIRS)('%s 全量不含任何领域常量', (relativeDir) => {
+     const files = collectTsFiles(join(PKG_ROOT, relativeDir)).filter(
+-      (file) => !EXCLUDED_FILES.has(file.replace(`${PKG_ROOT}/`, '')),
++      (file) => !EXCLUDED_FILES.has(packageRelativePath(file)),
+     );
+     const violations = files.flatMap((file) =>
+-      findViolations(file.replace(PKG_ROOT, ''), readFileSync(file, 'utf8')),
++      findViolations(packageRelativePath(file), readFileSync(file, 'utf8')),
+     );
+     expect(violations).toEqual([]);
+   });
+ 
+   it('扫描范围不是空的——搬来的领域核确实在里面', () => {
+     const files = collectTsFiles(join(PKG_ROOT, 'src')).map((file) =>
+-      file.replace(`${PKG_ROOT}/`, ''),
++      packageRelativePath(file),
+     );
+     for (const expected of [
+       'src/finance-ledger/ledger-posting.engine.ts',
+@@ -206,7 +217,7 @@ describe('A1 · 豁免登记仍然指向真东西', () => {
+ 
+   it('被豁免的文件确实在扫描范围内，只是被显式放行', () => {
+     const files = collectTsFiles(join(PKG_ROOT, 'src')).map((file) =>
+-      file.replace(`${PKG_ROOT}/`, ''),
++      packageRelativePath(file),
+     );
+     for (const excluded of EXCLUDED_FILES) {
+       expect(files).toContain(excluded);

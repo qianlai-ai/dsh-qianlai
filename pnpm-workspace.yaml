@@ -1,0 +1,8 @@
+packages:
+  - packages/*
+
+allowBuilds:
+  esbuild: true
+
+# 插件对 @deepseek-ai/dsh 的 peer 依赖是可选的：开发与测试不需要把 DSH 装进本仓。
+autoInstallPeers: false

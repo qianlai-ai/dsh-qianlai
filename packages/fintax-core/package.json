@@ -1,0 +1,38 @@
+{
+  "name": "@moneycome/fintax-core",
+  "version": "0.1.0",
+  "description": "钱来财税切片的领域核：从 moneycome 原样搬来的纯函数（记账引擎、结账检查、发票自洽校验、提问闸、消息渠道渲染），零 DSH 依赖",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qianlai-ai/dsh-qianlai.git",
+    "directory": "packages/fintax-core"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^4.4.0",
+    "decimal.js": "^10.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

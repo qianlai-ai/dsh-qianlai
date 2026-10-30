@@ -1,0 +1,34 @@
+diff --git a/packages/dsh-qianlai/vitest.config.ts b/packages/dsh-qianlai/vitest.config.ts
+index 80ffabb..fec6c44 100644
+--- a/packages/dsh-qianlai/vitest.config.ts
++++ b/packages/dsh-qianlai/vitest.config.ts
+@@ -1,7 +1,8 @@
+-import { defineConfig } from 'vitest/config'
++import type { UserConfig } from 'vitest/config'
+ 
+-export default defineConfig({
++// 仅使用类型，避免配置加载经过 Windows Global junction 运行时导入 Vitest。
++export default {
+   test: {
+     include: ['tests/**/*.spec.ts'],
+   },
+-})
++} satisfies UserConfig
+diff --git a/packages/fintax-core/vitest.config.ts b/packages/fintax-core/vitest.config.ts
+index 6b845c6..33615e9 100644
+--- a/packages/fintax-core/vitest.config.ts
++++ b/packages/fintax-core/vitest.config.ts
+@@ -1,9 +1,10 @@
+-import { defineConfig } from 'vitest/config'
++import type { UserConfig } from 'vitest/config'
+ 
+-export default defineConfig({
++// 仅使用类型，避免配置加载经过 Windows Global junction 运行时导入 Vitest。
++export default {
+   test: {
+     // 搬来的 spec 沿用 jest 的隐式全局（describe / it / expect），不加 import。
+     globals: true,
+     include: ['tests/**/*.spec.ts'],
+   },
+-})
++} satisfies UserConfig

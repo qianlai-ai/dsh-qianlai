@@ -1,0 +1,280 @@
+diff --git a/packages/dsh-qianlai/scripts/check-dsh-wechat.mjs b/packages/dsh-qianlai/scripts/check-dsh-wechat.mjs
+new file mode 100644
+index 0000000..7dcc2d1
+--- /dev/null
++++ b/packages/dsh-qianlai/scripts/check-dsh-wechat.mjs
+@@ -0,0 +1,125 @@
++import assert from 'node:assert/strict'
++import { spawn } from 'node:child_process'
++import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
++import { createServer } from 'node:net'
++import { tmpdir } from 'node:os'
++import { join, resolve } from 'node:path'
++import { fileURLToPath, pathToFileURL } from 'node:url'
++
++// 真实 DSH 安装/启动冒烟测试；只替换微信网络，不扫码、不调用模型。
++// 参数为已安装 DSH 的 lib/bin.js；桌面内置 CLI 可通过环境变量指定执行程序。
++const cli = resolve(process.argv[2])
++const executable = process.env.QIANLAI_DSH_EXECUTABLE || process.execPath
++const prefix = process.env.QIANLAI_DSH_EXECUTABLE ? ['--expose-internals', cli] : [cli]
++const plugin = fileURLToPath(new URL('../', import.meta.url))
++const root = mkdtempSync(join(tmpdir(), 'qianlai-dsh-wechat-'))
++const home = join(root, 'home')
++const marker = join(root, 'requests.jsonl')
++const preload = join(root, 'fake-ilink.mjs')
++writeFileSync(marker, '')
++writeFileSync(preload, `
++import { appendFileSync } from 'node:fs'
++const originalFetch = globalThis.fetch
++globalThis.fetch = async (url, init) => {
++  const parsed = new URL(url instanceof Request ? url.url : url)
++  if (parsed.hostname !== 'ilinkai.weixin.qq.com') return originalFetch(url, init)
++  const path = parsed.pathname
++  appendFileSync(${JSON.stringify(marker)}, JSON.stringify({ path, node: process.version }) + '\\n')
++  const json = (body) => new Response(JSON.stringify(body))
++  if (path.endsWith('/get_bot_qrcode'))
++    return json({ ret: 0, qrcode: 'synthetic-qr', qrcode_img_content: 'https://example.invalid/qianlai-qr' })
++  if (path.endsWith('/get_qrcode_status'))
++    return json({ status: 'confirmed', bot_token: 'synthetic-token', ilink_bot_id: 'synthetic-bot', ilink_user_id: 'synthetic-owner' })
++  if (path.endsWith('/getupdates')) return new Promise((_resolve, reject) => {
++    const fail = () => reject(Object.assign(new Error('aborted'), { name: 'AbortError' }))
++    if (init.signal.aborted) fail()
++    else init.signal.addEventListener('abort', fail, { once: true })
++  })
++  throw new Error('Unexpected WeChat request: ' + path)
++}
++`)
++const env = { ...process.env, DSH_HOME: home, MONEYCOME_WECHAT: '1' }
++// 不从开发机器继承真实模型凭据。
++delete env.DEEPSEEK_API_KEY
++delete env.DEEPSEEK_BASE_URL
++if (process.env.QIANLAI_DSH_EXECUTABLE) env.ELECTRON_RUN_AS_NODE = '1'
++const requests = () => readFileSync(marker, 'utf8').trim().split('\n').filter(Boolean).map((line) => JSON.parse(line))
++const paths = () => requests().map((request) => request.path)
++const count = (ending) => paths().filter((path) => path.endsWith(ending)).length
++
++async function stop(child) {
++  if (child.exitCode !== null || child.signalCode !== null) return
++  await new Promise((resolve) => {
++    child.once('close', resolve)
++    child.kill()
++  })
++}
++
++async function install() {
++  const child = spawn(executable, [...prefix, 'plugin', '--profile', 'web', 'add', `link:${plugin}`], { env, windowsHide: true })
++  let output = ''
++  child.stdout.on('data', (data) => { output += data })
++  child.stderr.on('data', (data) => { output += data })
++  const timer = setTimeout(() => child.kill(), 240_000)
++  try {
++    const code = await new Promise((resolve, reject) => {
++      child.once('error', reject)
++      child.once('close', resolve)
++    })
++    assert.equal(code, 0, output)
++  } finally {
++    clearTimeout(timer)
++    await stop(child)
++  }
++}
++
++async function boot(savedLogin) {
++  const server = createServer()
++  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve))
++  const { port } = server.address()
++  await new Promise((resolve) => server.close(resolve))
++  const beforeUpdates = count('/getupdates')
++  const child = spawn(executable, [...prefix, '--profile', 'web', '--host', '127.0.0.1', '--port', String(port), '--no-open'], {
++    env: { ...env, NODE_OPTIONS: `${env.NODE_OPTIONS || ''} --import=${pathToFileURL(preload).href}`.trim() }, windowsHide: true,
++  })
++  let output = ''
++  child.stdout.on('data', (data) => { output += data })
++  child.stderr.on('data', (data) => { output += data })
++  let spawnError
++  child.on('error', (error) => { spawnError = error })
++  try {
++    const deadline = Date.now() + 60_000
++    let ready = false
++    while (Date.now() < deadline && child.exitCode === null && !spawnError) {
++      if (count('/getupdates') > beforeUpdates) {
++        try {
++          const response = await fetch(`http://127.0.0.1:${port}`, { signal: AbortSignal.timeout(1000) })
++          // 隔离宿主也会要求网页登录；401 同样说明网页服务已就绪。
++          ready = response.ok || response.status === 401
++        } catch { /* 等待网页服务就绪。 */ }
++        if (ready && (savedLogin || output.includes('微信已接上'))) break
++      }
++      await new Promise((resolve) => setTimeout(resolve, 200))
++    }
++    assert.ifError(spawnError)
++    assert.ok(ready && count('/getupdates') > beforeUpdates, output)
++    assert.doesNotMatch(output, /did not activate|failed to import|moneycome-wechat: login failed/)
++    const png = readFileSync(join(home, 'moneycome', 'wechat-login.png'))
++    assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a')
++    if (!savedLogin) assert.match(output, /[▄█]/, 'terminal QR must be rendered')
++    assert.equal(count('/get_bot_qrcode'), 1, 'saved login must not request a new QR')
++    assert.equal(JSON.parse(readFileSync(join(home, 'moneycome', 'wechat.json'), 'utf8')).botToken, 'synthetic-token')
++    console.log(`PASS: real DSH ${savedLogin ? 'saved-login restart' : 'plugin install, activation and QR login'} (${process.platform}, host Node ${requests()[0].node})`)
++  } finally {
++    await stop(child)
++  }
++}
++
++try {
++  await install()
++  await boot(false)
++  await boot(true)
++} finally {
++  // pnpm 创建的是正常链接；不清理插件源目录和用户的真实 DSH_HOME。
++  if (existsSync(root)) rmSync(root, { recursive: true, force: true })
++}
+diff --git a/packages/dsh-qianlai/src/wechat/index.ts b/packages/dsh-qianlai/src/wechat/index.ts
+index 4e8b0ef..c885140 100644
+--- a/packages/dsh-qianlai/src/wechat/index.ts
++++ b/packages/dsh-qianlai/src/wechat/index.ts
+@@ -1,12 +1,18 @@
+ import { randomUUID } from 'node:crypto'
+-import { appendFileSync, chmodSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
++import { appendFileSync, chmodSync, existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs'
++import { createRequire } from 'node:module'
+ import { homedir } from 'node:os'
+ import { join } from 'node:path'
+ 
+-import QRCode from 'qrcode'
++import type * as QRCodeType from 'qrcode'
+ 
+ import { downloadMedia, getBotQrcode, IlinkConnection, imageMediaType, pollQrStatus, type IlinkMessage } from './ilink.js'
+ 
++// Windows 受限安装可能生成 Node 未识别的 Global junction；先取得原生真实路径，
++// 让 qrcode 的间接依赖从实际包目录解析。正常目录和其他系统沿用同一个库。
++const require = createRequire(import.meta.url)
++const QRCode = require(realpathSync.native(require.resolve('qrcode'))) as typeof QRCodeType
++
+ /**
+  * 微信薄通道：把一个扫码绑定的微信 bot 接到张姐会话上。
+  *
+diff --git a/packages/dsh-qianlai/tests/wechat-runtime.test.mjs b/packages/dsh-qianlai/tests/wechat-runtime.test.mjs
+new file mode 100644
+index 0000000..e88ba90
+--- /dev/null
++++ b/packages/dsh-qianlai/tests/wechat-runtime.test.mjs
+@@ -0,0 +1,118 @@
++import assert from 'node:assert/strict'
++import { spawnSync } from 'node:child_process'
++import { copyFileSync, mkdirSync, mkdtempSync, realpathSync, rmSync, rmdirSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs'
++import { createRequire } from 'node:module'
++import { tmpdir } from 'node:os'
++import { dirname, join, sep } from 'node:path'
++import { test } from 'node:test'
++import { fileURLToPath } from 'node:url'
++
++// 使用构建后的微信入口和真正的 qrcode，在独立 Node 进程中验证原生模块解析。
++// 只模拟微信网络接口，不模拟二维码库或文件系统。
++const probe = String.raw`
++import assert from 'node:assert/strict'
++import { readFileSync } from 'node:fs'
++import { join } from 'node:path'
++import { pathToFileURL } from 'node:url'
++const { apply } = await import(pathToFileURL(process.argv[1]).href)
++const stateDir = process.argv[2]
++let qrRequests = 0
++globalThis.fetch = async (url, init) => {
++  const path = new URL(url).pathname
++  const json = (body) => new Response(JSON.stringify(body))
++  if (path.endsWith('/get_bot_qrcode')) {
++    qrRequests++
++    return json({ ret: 0, qrcode: 'synthetic-qr', qrcode_img_content: 'https://example.invalid/qianlai-qr' })
++  }
++  if (path.endsWith('/get_qrcode_status'))
++    return json({ status: 'confirmed', bot_token: 'synthetic-token', ilink_bot_id: 'synthetic-bot', ilink_user_id: 'synthetic-owner' })
++  if (path.endsWith('/getupdates')) return new Promise((_resolve, reject) => {
++    const fail = () => reject(Object.assign(new Error('aborted'), { name: 'AbortError' }))
++    if (init.signal.aborted) fail()
++    else init.signal.addEventListener('abort', fail, { once: true })
++  })
++  throw new Error('Unexpected request: ' + path)
++}
++let output = ''
++const originalWrite = process.stdout.write
++process.stdout.write = (chunk) => { output += String(chunk); return true }
++let dispose
++const messages = []
++const ctx = {
++  effect: (fn) => { dispose = fn() },
++  on: () => () => {},
++  get: () => undefined,
++  logger: {
++    info: (message) => messages.push(message),
++    warn: (message) => messages.push(message),
++    error: (message) => messages.push(message),
++  },
++  sessionController: {
++    create: () => { throw new Error('No model/session should be started') },
++    prompt: () => { throw new Error('No model/session should be started') },
++  },
++}
++try {
++  apply(ctx, { stateDir })
++  const deadline = Date.now() + 5000
++  while (!messages.includes('moneycome-wechat: connected') && Date.now() < deadline)
++    await new Promise((resolve) => setTimeout(resolve, 10))
++  assert.ok(messages.includes('moneycome-wechat: connected'), messages.join('\n'))
++  const png = readFileSync(join(stateDir, 'wechat-login.png'))
++  assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a')
++  assert.equal(png.readUInt32BE(16), 360)
++  assert.equal(png.readUInt32BE(20), 360)
++  assert.ok(output.includes('\u2584') || output.includes('\u2588'), 'terminal QR must be rendered')
++  const state = readFileSync(join(stateDir, 'wechat.json'), 'utf8')
++  assert.equal(JSON.parse(state).botToken, 'synthetic-token')
++  dispose()
++  messages.length = 0
++  apply(ctx, { stateDir })
++  assert.ok(messages.includes('moneycome-wechat: connected'), 'saved login must reconnect')
++  assert.equal(qrRequests, 1, 'saved login must not request a new QR')
++  assert.equal(readFileSync(join(stateDir, 'wechat.json'), 'utf8'), state)
++  process.stdout.write = originalWrite
++  console.log(JSON.stringify({ pngBytes: png.length, terminalQr: true, savedLoginRestart: true }))
++} finally {
++  dispose?.()
++  process.stdout.write = originalWrite
++}
++`
++
++const require = createRequire(import.meta.url)
++const qrcodeRoot = dirname(realpathSync.native(require.resolve('qrcode/package.json')))
++const builtWechat = fileURLToPath(new URL('../lib/wechat/', import.meta.url))
++
++for (const globalJunction of [false, true]) {
++  test(globalJunction ? 'Windows Global junction: QR login and saved-login restart' : 'ordinary link: QR login and saved-login restart', {
++    skip: globalJunction && process.platform !== 'win32',
++  }, () => {
++    const root = mkdtempSync(join(tmpdir(), 'qianlai-微信 路径-'))
++    const link = join(root, 'node_modules', 'qrcode')
++    let linked = false
++    try {
++      // Node 22.19 的 Windows cpSync 对本测试的目录复制有异常，逐文件复制实际运行模块。
++      mkdirSync(join(root, 'wechat'))
++      for (const file of ['index.js', 'ilink.js']) copyFileSync(join(builtWechat, file), join(root, 'wechat', file))
++      writeFileSync(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
++      mkdirSync(dirname(link), { recursive: true })
++      // 显式构造与真实 DSH 受限安装相同的重解析目标；不依赖 DSH 内部执行器。
++      const target = globalJunction ? String.raw`\\?\Global` + sep + qrcodeRoot : qrcodeRoot
++      symlinkSync(target, link, process.platform === 'win32' ? 'junction' : 'dir')
++      linked = true
++      const result = spawnSync(process.execPath, ['--input-type=module', '--eval', probe, join(root, 'wechat', 'index.js'), join(root, 'state')], {
++        encoding: 'utf8', timeout: 15_000, windowsHide: true,
++      })
++      assert.ifError(result.error)
++      assert.equal(result.status, 0, result.stderr + result.stdout)
++      assert.equal(JSON.parse(result.stdout).savedLoginRestart, true)
++    } finally {
++      // Global junction 不被部分 Node 版本识别为链接；先移除链接本身，避免递归碰到依赖目标。
++      if (linked) {
++        if (process.platform === 'win32') rmdirSync(link)
++        else unlinkSync(link)
++      }
++      rmSync(root, { recursive: true, force: true })
++    }
++  })
++}

@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: ${{ matrix.os }} / Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        # node:sqlite 从 22.5 起才有；插件要求 22.19 以上或 24 以上。
+        node: ['22.19', '24']
+    steps:
+      - uses: actions/checkout@v4
+      # pnpm 版本取根 package.json 的 packageManager。
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - name: Q-008 sanitized reproduction materials (offline)
+        run: node packages/dsh-qianlai/e2e/q008/run.mjs --validate
+      - run: pnpm test
+      - name: WeChat compiled runtime (QR and saved login)
+        run: node --test packages/dsh-qianlai/tests/wechat-runtime.test.mjs
+      - name: Install isolated DSH test host
+        shell: bash
+        run: npm install --prefix "$RUNNER_TEMP/qianlai-dsh" --no-save --no-audit --no-fund @deepseek-ai/dsh@0.2.1-rc.3
+      - name: WeChat in real DSH (mock iLink, no model calls)
+        shell: bash
+        run: node packages/dsh-qianlai/scripts/check-dsh-wechat.mjs "$RUNNER_TEMP/qianlai-dsh/node_modules/@deepseek-ai/dsh/lib/bin.js"
