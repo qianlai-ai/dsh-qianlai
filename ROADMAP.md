@@ -2,8 +2,8 @@
 
 | 阶段 / Stage | 范围 / Scope | 状态 / Status |
 | --- | --- | --- |
-| 仓库基础 / Repository foundation | 介绍、Issue / PR 流程、支持与安全渠道 | 首期建仓 / Initial setup |
-| 源码接入 / Source integration | 确定版本和公开清单、保留许可及素材声明 | 待安排 / Pending |
+| 仓库基础 / Repository foundation | 介绍、Issue / PR 流程、支持与安全渠道 | 已完成社区建仓 / Community setup complete |
+| 源码接入 / Source integration | 确定版本和公开清单、保留许可及素材声明 | 本 PR 接入候选 / Candidate in this PR |
 | 反馈闭环 / Feedback loop | 受理真实反馈、登记接受的任务 | 随反馈推进 / As feedback arrives |
 | 首个可验证版本 / First validated release | 干净环境安装、兼容信息、检查和分发 | 未发布 / Not released |
 

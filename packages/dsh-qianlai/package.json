@@ -1,0 +1,87 @@
+{
+  "name": "dsh-qianlai",
+  "version": "0.1.0",
+  "description": "钱来张姐：DeepSeek Harness 上的小企业财务助手插件，本机一本账，读票、导入流水、记账、查余额利润、结账检查",
+  "license": "Apache-2.0",
+  "author": "钱来 (qianlai)",
+  "homepage": "https://github.com/qianlai-ai/dsh-qianlai#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qianlai-ai/dsh-qianlai.git",
+    "directory": "packages/dsh-qianlai"
+  },
+  "bugs": "https://github.com/qianlai-ai/dsh-qianlai/issues",
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "bookkeeping",
+    "accounting",
+    "invoice",
+    "wechat",
+    "小企业",
+    "记账",
+    "财务"
+  ],
+  "icon": "./assets/zhangjie/avatar.png",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./wechat": {
+      "types": "./lib/wechat/index.d.ts",
+      "default": "./lib/wechat/index.js"
+    },
+    "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "locale",
+    "cordis.patch.yml",
+    "README.zh.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/build-client.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json",
+    "test": "vitest run"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "dependencies": {
+    "@moneycome/fintax-core": "workspace:*",
+    "qrcode": "1.5.4"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh": ">=0.2.1-0 <0.3.0-0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/qrcode": "1.5.5",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "legacyPr": 2,
+    "legacyIssue": 1,
+    "legacyId": "Q-002",
+    "title": "fix(Q-002): 统一架构扫描的跨平台路径比较",
+    "mergeCommit": "7bccc200a13a9e9a759f197c101a051165f156d6",
+    "mergedAt": "2026-10-27T11:38:22Z",
+    "sourceHead": "70a5447a1cb098cedd84f3129907ab1aa50e9e32",
+    "files": [
+      ".github/workflows/ci.yml",
+      "CHANGELOG.md",
+      "packages/fintax-core/tests/arch/no-domain-constants.spec.ts"
+    ],
+    "summary": "统一架构扫描的相对路径比较；只改变测试路径键与直接回归，不改变财税逻辑。",
+    "patch": "docs/history/patches/legacy-pr-2.patch",
+    "validationSource": "历史 PR 描述；本次验证另见 migration.md。"
+  },
+  {
+    "legacyPr": 4,
+    "legacyIssue": 3,
+    "legacyId": "Q-003",
+    "title": "fix(Q-003): 兼容微信二维码库的 Windows 异常链接加载",
+    "mergeCommit": "4d5213a60651995d99680d71a44c40ed612dfcd3",
+    "mergedAt": "2026-10-28T02:20:57Z",
+    "sourceHead": "9b40b8ebfdd31869eb64edc3cec8b5cb5e114f9b",
+    "files": [
+      ".github/workflows/ci.yml",
+      "CHANGELOG.md",
+      "packages/dsh-qianlai/scripts/check-dsh-wechat.mjs",
+      "packages/dsh-qianlai/src/wechat/index.ts",
+      "packages/dsh-qianlai/tests/wechat-runtime.test.mjs"
+    ],
+    "summary": "微信入口加载 qrcode 前用 realpathSync.native 定位真实文件，修复 Global junction 下的间接依赖解析。",
+    "patch": "docs/history/patches/legacy-pr-4.patch",
+    "validationSource": "历史 PR 描述；本次验证另见 migration.md。"
+  },
+  {
+    "legacyPr": 10,
+    "legacyIssue": 9,
+    "legacyId": "Q-008",
+    "title": "fix(Q-008): 改善张姐人设稳定性并补充回归验证",
+    "mergeCommit": "ba117cd0c763b7f0f9e4295b484d744e74e3becf",
+    "mergedAt": "2026-10-29T03:00:30Z",
+    "sourceHead": "090588562f45b49681b4c27f4a5e06e3393558cb",
+    "files": [
+      "CHANGELOG.md",
+      "packages/dsh-qianlai/cordis.patch.yml",
+      "packages/dsh-qianlai/e2e/scenarios.mjs"
+    ],
+    "summary": "在现有 prefix/suffix 内加强身份、岗位和真实能力约束；最终修订保留正常业务邀约与账务提醒，遗留事实错误继续跟踪。",
+    "patch": "docs/history/patches/legacy-pr-10.patch",
+    "validationSource": "历史 PR 描述；本次验证另见 migration.md。"
+  },
+  {
+    "legacyPr": 12,
+    "legacyIssue": 11,
+    "legacyId": "Q-009",
+    "title": "fix(Q-009): 修复 Windows Global 链接下的测试配置加载",
+    "mergeCommit": "e1f7cd69cb1e943764a9f977d7f28b7dbc81372a",
+    "mergedAt": "2026-10-29T03:07:28Z",
+    "sourceHead": "3985c26fd03050d9bb082dc45a6c7f4b5ca80b6d",
+    "files": [
+      "CHANGELOG.md",
+      "packages/dsh-qianlai/vitest.config.ts",
+      "packages/fintax-core/vitest.config.ts"
+    ],
+    "summary": "两个 Vitest 配置用仅类型导入和等价对象，避免配置启动时不必要的运行时模块解析。",
+    "patch": "docs/history/patches/legacy-pr-12.patch",
+    "validationSource": "历史 PR 描述；本次验证另见 migration.md。"
+  },
+  {
+    "legacyPr": 13,
+    "legacyIssue": 9,
+    "legacyId": "Q-008",
+    "title": "test(Q-008): 提供筛查脱敏的人设复现材料",
+    "mergeCommit": "dad68cf856fae0bb2bb2ea954f6e9400a0e69098",
+    "mergedAt": "2026-10-29T05:46:04Z",
+    "sourceHead": "bbbb1a16ba11cfad335baedd408bcf09d86aea19",
+    "files": [
+      ".github/workflows/ci.yml",
+      "CHANGELOG.md",
+      "packages/dsh-qianlai/e2e/q008/README.md",
+      "packages/dsh-qianlai/e2e/q008/cases.json",
+      "packages/dsh-qianlai/e2e/q008/evidence.json",
+      "packages/dsh-qianlai/e2e/q008/original-failures.md",
+      "packages/dsh-qianlai/e2e/q008/personas.json",
+      "packages/dsh-qianlai/e2e/q008/privacy-review.json",
+      "packages/dsh-qianlai/e2e/q008/review.md",
+      "packages/dsh-qianlai/e2e/q008/run.mjs"
+    ],
+    "summary": "补充八个经过筛查的 Q-008 复现文件与独立驱动，保留固定测试和精选可见回复，排除原始会话/推理/凭据。",
+    "patch": null,
+    "validationSource": "历史 PR 描述；本次验证另见 migration.md。"
+  }
+]

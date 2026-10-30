@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-30",
+  "platform": "Windows",
+  "node": "24.18.0",
+  "pnpm": "12.3.4",
+  "sourceCommit": "dad68cf856fae0bb2bb2ea954f6e9400a0e69098",
+  "unitTests": {
+    "core": 309,
+    "plugin": 62,
+    "total": 371
+  },
+  "checks": [
+    {
+      "check": "build",
+      "result": "passed"
+    },
+    {
+      "check": "wechat-runtime",
+      "result": "passed"
+    },
+    {
+      "check": "lint",
+      "result": "passed"
+    },
+    {
+      "check": "test",
+      "result": "passed"
+    },
+    {
+      "check": "typecheck",
+      "result": "passed"
+    },
+    {
+      "check": "a6 classifier selftest",
+      "result": "passed with Git for Windows diff on PATH in a normal process",
+      "initialResult": "Default PATH lacked diff (ENOENT); restricted MSYS execution was denied. No source change. This is only the two classifier selftests, not an internal-upstream A6 comparison."
+    },
+    {
+      "check": "isolated DSH 0.2.1-rc.3 / mock iLink",
+      "result": "passed",
+      "host": "previously installed fixed-version test CLI; newly isolated DSH_HOME and synthetic login",
+      "freshHostInstall": "cancelled after registry download stalled; source workspace itself had a fresh frozen-lockfile install",
+      "liveModelCalls": 0,
+      "realWechatAccounts": 0
+    },
+    {
+      "check": "Q-008 offline material validation",
+      "result": "passed",
+      "cases": 24,
+      "variants": 3,
+      "networkRequests": 0
+    }
+  ],
+  "hostedCi": "not enabled or run under current public maintenance rules",
+  "liveModels": "not called for this import; prior results are historical only",
+  "otherPlatforms": "not rerun for this import; old Windows/Linux/macOS × Node 22.19/24 checks are recorded separately",
+  "upstreamA6": "The imported source is byte-identical to the selected snapshot; full comparison against private internal upstream was not rerun."
+}

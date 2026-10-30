@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "types": ["node"],
+
+    // 对齐上游钱来主仓 `harness/tsconfig.json` 的编译口径。仓库根的 base 比上游
+    // 严两档，这两档在搬来的四个文件上共报 20 处。要消掉就得动逻辑行，而本包的前提是
+    // 搬来的文件逻辑一行不改——所以关开关，不改代码，这 20 处登记在 README。关掉的影响面是 src 下的 25 个文件
+    // （23 个搬入件 + 本包自写的 index.ts / errors.ts），加上 tsconfig.test.json
+    // 继承本文件后覆盖的 tests/。
+    "noUncheckedIndexedAccess": false,
+    "exactOptionalPropertyTypes": false
+  },
+  "include": ["src"]
+}

@@ -1,43 +1,34 @@
-# Zhangjie by Qianlai · 钱来张姐
+# Zhangjie · dsh-qianlai
 
-[简体中文](README.zh.md)
+[中文](README.zh.md)
 
-A community project for `dsh-qianlai`, a bookkeeping assistant plugin for
-[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), intended for small businesses.
+A third-party small-business finance assistant plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).
 
-**Current stage: repository setup.** This repository contains community documentation
-and contribution channels. **Plugin source code has not been imported. No runnable
-version, installation command, release artifact or demo is provided here yet.**
-Source integration and release validation are separate next steps.
+**Source integration candidate; no npm package or Release is published by this import.** Source snapshot: `dad68cf856fae0bb2bb2ea954f6e9400a0e69098`. See the [migration ledger](docs/history/migration.md), [prior PR records](docs/history/legacy-prs.md), and [import review](docs/history/import-review.json).
 
-## Participate
+## Scope
 
-- [Report a bug, suggest a feature or ask a question](https://github.com/qianlai-ai/dsh-qianlai/issues/new/choose).
-- [Discuss ideas, ask questions and share examples](https://github.com/qianlai-ai/dsh-qianlai/discussions).
-- Improve documentation and translations through a PR; read [CONTRIBUTING](CONTRIBUTING.md).
-- Read the [roadmap](ROADMAP.md), [support guide](SUPPORT.md) and [issue format](docs/issue-reporting.md).
-- Report vulnerabilities privately via [SECURITY](SECURITY.md), and conduct concerns via the [Code of Conduct](CODE_OF_CONDUCT.md).
+One local SQLite book per company; synthetic sample book, invoice consistency checks, bank-statement import, opening balances, preview/confirmed posting, balances/profit, simple reports, closing, reversals and CSV review export. Optional WeChat iLink shares the book with the desktop/web entry, but keeps separate conversation context. Excel/PDF statements, desktop QR onboarding, cross-entry task continuity and WeChat welcome remain open requirements. See [package documentation](packages/dsh-qianlai/README.md). This does not replace an accountant or execute tax filing/payments. Model conversations and attachments use the configured external model/channel services.
 
-Chinese and English are welcome. Use synthetic examples. Never include API keys,
-URLs containing tokens, WeChat credentials, real tax or bank identifiers,
-unredacted invoices, ledger databases or private chat histories.
+## Build and validate
 
-## Project and maintenance
+Use Node 22.x >=22.19 or Node >=24, and the declared pnpm 12.3.4.
 
-The intended focus is invoice reading, bank statement import, bookkeeping and
-accountant review assistance. This is the project direction, not a claim that
-these capabilities are delivered or verified here today. The project does not
-replace an accountant and does not offer tax filing or payment execution.
+```sh
+pnpm install --frozen-lockfile
+pnpm build
+pnpm typecheck
+pnpm lint
+pnpm test
+node packages/dsh-qianlai/e2e/q008/run.mjs --validate
+```
 
-The repository belongs to `qianlai-ai`; the initial maintainer is
-[@peyton-v5](https://github.com/peyton-v5). See [MAINTAINERS](MAINTAINERS.md).
+After building, install the absolute path of `packages/dsh-qianlai` through the DSH desktop plugin page or `dsh plugin --profile web add /absolute/path/to/packages/dsh-qianlai`. Do not install the workspace root. Use an isolated DSH_HOME. Workspace dependency distribution/npm installation is a separate release milestone.
 
-This is an independently maintained third-party project, not an official DeepSeek
-product, endorsement, certification or partnership.
+## Tests and contribution
 
-## License
+The [Q-008 reproduction kit](packages/dsh-qianlai/e2e/q008/README.md) includes fixed synthetic prompts, three frozen personas and selected visible replies. Offline validation needs no key. Paid live-model runs are explicit and use only the tester's DEEPSEEK_API_KEY environment variable. Never submit credentials, private conversations or real financial records.
 
-Current documentation and configuration use [Apache-2.0](LICENSE). Plugin code is
-intended to use the same license when imported. Brand names, logos and Zhangjie
-character artwork are outside that license; no such artwork is included in this
-initial repository. See [NOTICE](NOTICE).
+Follow [CONTRIBUTING](CONTRIBUTING.md), the [issue guide](docs/issue-reporting.md), and the existing PR template. Hosted CI is intentionally not enabled under the current maintenance rules; the historical workflow is archived as a non-workflow file. Historical checks and this import's local results are distinguished.
+
+Code uses [Apache-2.0](LICENSE). Zhangjie artwork remains separately restricted to display inside this plugin; retain [NOTICE](NOTICE) and [asset notices](packages/dsh-qianlai/assets/zhangjie/NOTICE.md). Community-maintained, not an official DeepSeek product. See [maintainers](MAINTAINERS.md), [support](SUPPORT.md), [roadmap](ROADMAP.md) and [security reporting](SECURITY.md).

@@ -1,6 +1,6 @@
 # 后续源码与发布 / Future source integration and release
 
-当前没有插件源码、安装包、tag 或 Release，不提供安装命令。
+本分支已导入源码并提供从源码构建说明；尚未发布安装包、tag 或 Release，不提供未经验证的 npm 安装命令。
 
 后续实际安排接入或发布时：
 
@@ -13,7 +13,7 @@
 7. 仅为真实发布创建匹配的 tag、Release 和变更记录，并回读下载内容。
 8. 未完成的渠道和平台标为未发布或未验证。
 
-No source or release is available here yet. A future release needs an identified
+Source is included in this integration candidate; no package or Release is published by this import. A future release needs an identified
 commit and publication manifest, licensing and privacy review, actual toolchain
 instructions, clean-install evidence, relevant checks and verified package rights
 and dependencies. Tags and release notes must match real releases. Verify resulting

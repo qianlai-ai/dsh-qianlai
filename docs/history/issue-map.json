@@ -1,0 +1,81 @@
+{
+  "sourceCommit": "dad68cf856fae0bb2bb2ea954f6e9400a0e69098",
+  "tracking": {
+    "number": 2,
+    "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/2"
+  },
+  "issues": [
+    {
+      "legacyId": "Q-002",
+      "legacyIssue": 1,
+      "publicIssue": 3,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/3",
+      "historicalState": "closed",
+      "publicState": "closed (historical archive; source import still awaits merge)"
+    },
+    {
+      "legacyId": "Q-003",
+      "legacyIssue": 3,
+      "publicIssue": 4,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/4",
+      "historicalState": "closed",
+      "publicState": "closed (historical archive; source import still awaits merge)"
+    },
+    {
+      "legacyId": "Q-004",
+      "legacyIssue": 5,
+      "publicIssue": 5,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/5",
+      "historicalState": "open",
+      "publicState": "open"
+    },
+    {
+      "legacyId": "Q-005",
+      "legacyIssue": 6,
+      "publicIssue": 6,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/6",
+      "historicalState": "open",
+      "publicState": "open"
+    },
+    {
+      "legacyId": "Q-006",
+      "legacyIssue": 7,
+      "publicIssue": 7,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/7",
+      "historicalState": "open",
+      "publicState": "open"
+    },
+    {
+      "legacyId": "Q-007",
+      "legacyIssue": 8,
+      "publicIssue": 8,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/8",
+      "historicalState": "open",
+      "publicState": "open"
+    },
+    {
+      "legacyId": "Q-008",
+      "legacyIssue": 9,
+      "publicIssue": 9,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/9",
+      "historicalState": "open",
+      "publicState": "open"
+    },
+    {
+      "legacyId": "Q-009",
+      "legacyIssue": 11,
+      "publicIssue": 10,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/10",
+      "historicalState": "closed",
+      "publicState": "closed (historical archive; source import still awaits merge)"
+    },
+    {
+      "legacyId": "Q-010",
+      "legacyIssue": 14,
+      "publicIssue": 11,
+      "url": "https://github.com/qianlai-ai/dsh-qianlai/issues/11",
+      "historicalState": "open",
+      "publicState": "open"
+    }
+  ]
+}

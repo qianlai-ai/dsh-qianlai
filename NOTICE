@@ -1,19 +1,31 @@
 dsh-qianlai — Zhangjie by Qianlai
 Copyright 2026 Qianlai and contributors.
 
-This initial repository contains community documentation and configuration.
-Plugin source code and Zhangjie artwork have not been imported.
+Source integration candidate based on dad68cf856fae0bb2bb2ea954f6e9400a0e69098.
+Code, documentation and configuration use Apache-2.0 unless otherwise stated.
+This is an independent third-party community project; it is not an official
+DeepSeek product, certification, endorsement or partnership.
 
-Apache-2.0 applies to the documentation and configuration unless a file states
-otherwise. It does not grant rights to Qianlai or Zhangjie names, logos, character
-artwork or trademarks beyond what the license expressly permits.
+Zhangjie artwork
+----------------
+The four images under packages/dsh-qianlai/assets/zhangjie are (c) Qianlai,
+all rights reserved, shipped for display inside this plugin only. They are
+not Apache-2.0 assets and may not be separately used, modified or redistributed.
+Retain packages/dsh-qianlai/assets/zhangjie/NOTICE.md and its provenance.
+Names, logos and trademarks are not granted by the code license.
 
-When source code or assets are imported, retain their applicable copyright,
-provenance and asset-specific notices. This notice does not replace or expand
-any asset-specific permission.
+Accounting pack
+---------------
+The included small-enterprise accounting pack is an engineering candidate.
+Signature fields are placeholders; it has not been reviewed by a licensed accountant.
 
-This is an independent third-party community project, not an official product,
-certification, endorsement or partnership of DeepSeek.
+Upstream and dependencies
+-------------------------
+packages/fintax-core was copied from Qianlai's internal upstream; original
+file headers, source commit and A6-SNAPSHOT.md are retained without logic changes.
+Runtime dependencies are installed separately: zod (MIT), decimal.js (MIT),
+qrcode (MIT) and their dependencies (MIT/ISC). The iLink protocol implementation
+follows observed traffic; no openclaw-weixin code is copied.
 
-当前仓库仅含社区文档与配置，未导入插件源码或张姐图片。
-代码许可证不扩大品牌、标志或角色素材的授权；后续接入时须保留各自声明。
+源码与社区文档按 Apache-2.0 提供；张姐素材保留独立版权声明，仅随插件展示。
+本次是源码接入候选，不是 npm、Release 或生产部署发布。

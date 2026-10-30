@@ -1,0 +1,617 @@
+{
+  "date": "2026-10-30",
+  "sourceCommit": "dad68cf856fae0bb2bb2ea954f6e9400a0e69098",
+  "publicBase": "07a4b0638daed67bd9b6ddeed774818928abf0b4",
+  "publicationMode": "latest tracked snapshot; one PR, no private Git objects",
+  "sourcePackageFiles": 110,
+  "sourcePackageFilesByteIdentical": 108,
+  "sourcePackageDocumentationChanges": [
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/privacy-review.json",
+      "reason": "public issue link and resealed Q-008 documentation hash only"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/README.md",
+      "reason": "public issue link and resealed Q-008 documentation hash only"
+    }
+  ],
+  "runtimeAndCoreSourceUnchanged": true,
+  "copiedCoreTestsUnchanged": true,
+  "originalPoliciesPreserved": [
+    ".github/ISSUE_TEMPLATE",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/CODEOWNERS",
+    "LICENSE",
+    "SECURITY.md",
+    "CODE_OF_CONDUCT.md",
+    "MAINTAINERS.md",
+    "docs/issue-reporting.md"
+  ],
+  "excludedFromOriginalSnapshot": [
+    ".github/COMMIT_TEMPLATE.txt",
+    ".github/ISSUE_TEMPLATE/bug_report.md",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/workflows/ci.yml",
+    ".gitignore",
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "docs/screens/zhangjie-session.jpg",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh.md",
+    "SECURITY.md"
+  ],
+  "artwork": "four original plugin-display-only assets and copyright notice retained",
+  "syntheticFixtureReview": "invoice images visually checked; TEST-marked tax IDs and deliberate error variants; CSV test data decoded as GB18030; XLSX belongs to source synthetic fixtures",
+  "scan": {
+    "patterns": [
+      "API key tokens",
+      "GitHub tokens",
+      "private keys",
+      "JWT",
+      "token-bearing URLs",
+      "personal machine paths",
+      "private source links",
+      "forbidden credential/database/log artifacts"
+    ],
+    "scope": "candidate text, synthetic fixtures and issue/PR publication payloads; all staged paths checked; no private Git object history imported",
+    "unresolvedFindings": 0,
+    "limitations": "pattern scan and manual review, not a mathematical guarantee; real model credentials were not read for this import"
+  },
+  "validation": "validation.json",
+  "legacyIssues": 9,
+  "legacyPrRecords": 5,
+  "files": [
+    {
+      "path": "packages/dsh-qianlai/assets/packs/accounting-cn-small-enterprise-small-scale.json",
+      "sourceSha256": "f3d4aefee5d0f4986a52a471899f5fdc23afdec34e3ace82b137bda5f6608476",
+      "importSha256": "f3d4aefee5d0f4986a52a471899f5fdc23afdec34e3ace82b137bda5f6608476"
+    },
+    {
+      "path": "packages/dsh-qianlai/assets/zhangjie/avatar.png",
+      "sourceSha256": "e94cdc2251d8f3bb23d5725122273c21d467dafebfb544392c1cc9858539aae4",
+      "importSha256": "e94cdc2251d8f3bb23d5725122273c21d467dafebfb544392c1cc9858539aae4"
+    },
+    {
+      "path": "packages/dsh-qianlai/assets/zhangjie/explain.png",
+      "sourceSha256": "27113a507d1a1818c47b96f581d51ccda4e214b85c284820e6f8da022ef68f81",
+      "importSha256": "27113a507d1a1818c47b96f581d51ccda4e214b85c284820e6f8da022ef68f81"
+    },
+    {
+      "path": "packages/dsh-qianlai/assets/zhangjie/NOTICE.md",
+      "sourceSha256": "b26fcb6ba72d8f58125a6693289c630996d77714f106e4cea611f51d37ae7db5",
+      "importSha256": "b26fcb6ba72d8f58125a6693289c630996d77714f106e4cea611f51d37ae7db5"
+    },
+    {
+      "path": "packages/dsh-qianlai/assets/zhangjie/reassure.png",
+      "sourceSha256": "dccb6dce35b051439c9ef645be2e34c23d0a18429a9d0beeda43aea447452a7f",
+      "importSha256": "dccb6dce35b051439c9ef645be2e34c23d0a18429a9d0beeda43aea447452a7f"
+    },
+    {
+      "path": "packages/dsh-qianlai/assets/zhangjie/welcome.png",
+      "sourceSha256": "fa9a601d398163a9c2c2ca9b13e2b3a274c86b344ee01699110087350e79ec41",
+      "importSha256": "fa9a601d398163a9c2c2ca9b13e2b3a274c86b344ee01699110087350e79ec41"
+    },
+    {
+      "path": "packages/dsh-qianlai/client/client.src.js",
+      "sourceSha256": "6d7e6946330997f421d42d6073f327e349605b9283d475415ed19882bf1e028a",
+      "importSha256": "6d7e6946330997f421d42d6073f327e349605b9283d475415ed19882bf1e028a"
+    },
+    {
+      "path": "packages/dsh-qianlai/cordis.patch.yml",
+      "sourceSha256": "9d5e5dd375db05f4f94718f91493d17088b8dc3090a6eacfcc7758ff41f29467",
+      "importSha256": "9d5e5dd375db05f4f94718f91493d17088b8dc3090a6eacfcc7758ff41f29467"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/inv-bad-total.png",
+      "sourceSha256": "4639b78a02be49ef735f1726c202eb6f6c1ce941eaf2307a40c2efdd018e657e",
+      "importSha256": "4639b78a02be49ef735f1726c202eb6f6c1ce941eaf2307a40c2efdd018e657e"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/inv-blurry.png",
+      "sourceSha256": "60e9ac1ae80e99b6b459d57a5875e6c1e027287e2718aefaac1ec416f89de0ff",
+      "importSha256": "60e9ac1ae80e99b6b459d57a5875e6c1e027287e2718aefaac1ec416f89de0ff"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/inv-office-plain.png",
+      "sourceSha256": "8262f34244e18c85c3b2289541d99168b25d1e2bbf781394a86792efded55539",
+      "importSha256": "8262f34244e18c85c3b2289541d99168b25d1e2bbf781394a86792efded55539"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/inv-office.png",
+      "sourceSha256": "986de04e678238d8f8b7b8073c96392eea70c7562b62e330a6c440e3e05d13d2",
+      "importSha256": "986de04e678238d8f8b7b8073c96392eea70c7562b62e330a6c440e3e05d13d2"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/inv-wrong-buyer.png",
+      "sourceSha256": "5e21806b563b0bba59b1204f1ca8c860e246b9b393094d3559ff3fc9f1a851f1",
+      "importSha256": "5e21806b563b0bba59b1204f1ca8c860e246b9b393094d3559ff3fc9f1a851f1"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/stmt-broken.csv",
+      "sourceSha256": "b356241d5ae7c268a23588648bd27cea3e045c2a50fa300da59a1fa7200348ee",
+      "importSha256": "b356241d5ae7c268a23588648bd27cea3e045c2a50fa300da59a1fa7200348ee"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/stmt-injection.csv",
+      "sourceSha256": "b54d483d8283784a386b1057cc3ac4b5633bddfc30ff6eb1be7b57352191511c",
+      "importSha256": "b54d483d8283784a386b1057cc3ac4b5633bddfc30ff6eb1be7b57352191511c"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/stmt-jan.csv",
+      "sourceSha256": "ddf5f53a0a99e5bf993972b9d2f768f959fd228c978353d9c3e717e57e9989f4",
+      "importSha256": "ddf5f53a0a99e5bf993972b9d2f768f959fd228c978353d9c3e717e57e9989f4"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/fixtures/stmt-jan.xlsx",
+      "sourceSha256": "d903882b0299a79133f653123168ee29037170fa9c85142c60db675d13265249",
+      "importSha256": "d903882b0299a79133f653123168ee29037170fa9c85142c60db675d13265249"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/cases.json",
+      "sourceSha256": "a6eb59d3dbf7e91d5747e570ea35449a87d1bfc7d29b035b29059bf93732ecf2",
+      "importSha256": "a6eb59d3dbf7e91d5747e570ea35449a87d1bfc7d29b035b29059bf93732ecf2"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/evidence.json",
+      "sourceSha256": "d2433e01f99c1239ac8ca6d2f5291834f5894f709dd81d43ed5561c91c0c8135",
+      "importSha256": "d2433e01f99c1239ac8ca6d2f5291834f5894f709dd81d43ed5561c91c0c8135"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/original-failures.md",
+      "sourceSha256": "a5f58948c383c0d448b7996481b2c931cd800b34639a45996b6efe2943d8fba1",
+      "importSha256": "a5f58948c383c0d448b7996481b2c931cd800b34639a45996b6efe2943d8fba1"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/personas.json",
+      "sourceSha256": "686a352c92f17ef8b37b4194d011fc0d5d16a72876f5a69f8d61c235a70ca137",
+      "importSha256": "686a352c92f17ef8b37b4194d011fc0d5d16a72876f5a69f8d61c235a70ca137"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/privacy-review.json",
+      "sourceSha256": "1e4fc238edcb43257d151b97c231383b492d605efdc1fd1e8ba61220c1f2e8cf",
+      "importSha256": "3d212172b69ccea2958023f2acb926a290a00f3c37f28e43a8c39a742a4cbe5d"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/README.md",
+      "sourceSha256": "1dd9c501334aa5d02de370bc659f54c4414a0a8df8cb4d0ef46c71857291567b",
+      "importSha256": "0d9243225f269fd2ee4597079049a65268bfdb0183cd36c4a7312a23ac270d27"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/review.md",
+      "sourceSha256": "5afe5e5b4856ab46c6282d91b94d9969e83865e548df788678a1e4014cbf0173",
+      "importSha256": "5afe5e5b4856ab46c6282d91b94d9969e83865e548df788678a1e4014cbf0173"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/q008/run.mjs",
+      "sourceSha256": "7bb9a7efc15ca7192bb031b0471c05983e5b392c7ceff34f13277ed05f31a708",
+      "importSha256": "7bb9a7efc15ca7192bb031b0471c05983e5b392c7ceff34f13277ed05f31a708"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/run.mjs",
+      "sourceSha256": "a0159e72ca2c47463bb98d25902dd315cfd7522ea8cd55a64e18fb0cc2c87386",
+      "importSha256": "a0159e72ca2c47463bb98d25902dd315cfd7522ea8cd55a64e18fb0cc2c87386"
+    },
+    {
+      "path": "packages/dsh-qianlai/e2e/scenarios.mjs",
+      "sourceSha256": "351579204c5282487026400578d8e535abdabf298028ca66b7509daa2742d526",
+      "importSha256": "351579204c5282487026400578d8e535abdabf298028ca66b7509daa2742d526"
+    },
+    {
+      "path": "packages/dsh-qianlai/locale/en.json",
+      "sourceSha256": "98eacd951e943b2b6c2f3c3d909a8cf49769ebd120bbe35bbe58e46d64fc58fe",
+      "importSha256": "98eacd951e943b2b6c2f3c3d909a8cf49769ebd120bbe35bbe58e46d64fc58fe"
+    },
+    {
+      "path": "packages/dsh-qianlai/locale/zh.json",
+      "sourceSha256": "090565cd073673710128b1590e8f8d0c330da0f4a63e42d2ccf90fe8a9e04226",
+      "importSha256": "090565cd073673710128b1590e8f8d0c330da0f4a63e42d2ccf90fe8a9e04226"
+    },
+    {
+      "path": "packages/dsh-qianlai/package.json",
+      "sourceSha256": "5bcc4475d55e873d6e41ba8b1297a0cca440ee7c02334c75b0b916061bab2cef",
+      "importSha256": "5bcc4475d55e873d6e41ba8b1297a0cca440ee7c02334c75b0b916061bab2cef"
+    },
+    {
+      "path": "packages/dsh-qianlai/README.md",
+      "sourceSha256": "7be7b0d97d9eb79fee97340a462383123a6d3b19463abd4020af5d6fb3b45067",
+      "importSha256": "7be7b0d97d9eb79fee97340a462383123a6d3b19463abd4020af5d6fb3b45067"
+    },
+    {
+      "path": "packages/dsh-qianlai/README.zh.md",
+      "sourceSha256": "cd2dd13a85c537cf324d5884b20c0f2423ab8b060ba68077cb27ef1ea636db72",
+      "importSha256": "cd2dd13a85c537cf324d5884b20c0f2423ab8b060ba68077cb27ef1ea636db72"
+    },
+    {
+      "path": "packages/dsh-qianlai/scripts/build-client.mjs",
+      "sourceSha256": "1dcab77374c3d2be9f31a522a60471bf0543ff96bfc603526708b4c77cef959f",
+      "importSha256": "1dcab77374c3d2be9f31a522a60471bf0543ff96bfc603526708b4c77cef959f"
+    },
+    {
+      "path": "packages/dsh-qianlai/scripts/check-dsh-wechat.mjs",
+      "sourceSha256": "47818091e2280493ffb4fb183253d73385eb32d2a607880c603976031cc17f0f",
+      "importSha256": "47818091e2280493ffb4fb183253d73385eb32d2a607880c603976031cc17f0f"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/args.ts",
+      "sourceSha256": "658819517a0b0e5973a35ec735c69ef54912be99a41d99a67f5405b7d2f0b4ee",
+      "importSha256": "658819517a0b0e5973a35ec735c69ef54912be99a41d99a67f5405b7d2f0b4ee"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/balances.ts",
+      "sourceSha256": "5fe16d04ce56318033b77f1943d140ea2e3592ad4e364ee79277f49ecb706d6b",
+      "importSha256": "5fe16d04ce56318033b77f1943d140ea2e3592ad4e364ee79277f49ecb706d6b"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/book.ts",
+      "sourceSha256": "6ec57aba343c55f6cca46812d57dcfa12b46f3c5f0ee549cb769ce08a84a2f29",
+      "importSha256": "6ec57aba343c55f6cca46812d57dcfa12b46f3c5f0ee549cb769ce08a84a2f29"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/closing.ts",
+      "sourceSha256": "f48a1bd5db70191f0992da8e1dc0145afb63f4b05b42e8f9ac5d55a79a6a3f23",
+      "importSha256": "f48a1bd5db70191f0992da8e1dc0145afb63f4b05b42e8f9ac5d55a79a6a3f23"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/deadlines.ts",
+      "sourceSha256": "9e0a36a3e8156bf7176a604766b6f01a457557c1bc9ab1f67c642dcdeae00871",
+      "importSha256": "9e0a36a3e8156bf7176a604766b6f01a457557c1bc9ab1f67c642dcdeae00871"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/entries.ts",
+      "sourceSha256": "06292d51f5c68ae0671a46b9980ee662485feacc8183d74a58f590fb61471727",
+      "importSha256": "06292d51f5c68ae0671a46b9980ee662485feacc8183d74a58f590fb61471727"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/index.ts",
+      "sourceSha256": "6d339f712ce6dd29d9c7c8a4a33521be0c893c6bcd17c7f5fb488216376ff8f8",
+      "importSha256": "6d339f712ce6dd29d9c7c8a4a33521be0c893c6bcd17c7f5fb488216376ff8f8"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/invoices.ts",
+      "sourceSha256": "8e35838c8dee211b08d6fbd78c2cee9db327e29d25df8a01a16b4eee07d4e91a",
+      "importSha256": "8e35838c8dee211b08d6fbd78c2cee9db327e29d25df8a01a16b4eee07d4e91a"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/pack.ts",
+      "sourceSha256": "b41567637b367b4a1f7584752abac7c46850cd9ff7e5eabfec1e7adf8f4cdfcb",
+      "importSha256": "b41567637b367b4a1f7584752abac7c46850cd9ff7e5eabfec1e7adf8f4cdfcb"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/period.ts",
+      "sourceSha256": "470ec3a3342c79d125349c0e37c1f0ab14c729fbc8a6323ac09e5274cec145b2",
+      "importSha256": "470ec3a3342c79d125349c0e37c1f0ab14c729fbc8a6323ac09e5274cec145b2"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/reports.ts",
+      "sourceSha256": "f5bd2501e4191c3f2b354415e0079c93a64f4556107001bb4f01ddcbc15a235b",
+      "importSha256": "f5bd2501e4191c3f2b354415e0079c93a64f4556107001bb4f01ddcbc15a235b"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/review-pack.ts",
+      "sourceSha256": "d5e9b469666e8b4e75a5d33fca6ddada4deea0fcfc6e294dabebdf7334f8b42b",
+      "importSha256": "d5e9b469666e8b4e75a5d33fca6ddada4deea0fcfc6e294dabebdf7334f8b42b"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/sample-book.ts",
+      "sourceSha256": "d0de15ff9d39efd3be8bfefe8955b1c0c28c596982daac34037f400288966503",
+      "importSha256": "d0de15ff9d39efd3be8bfefe8955b1c0c28c596982daac34037f400288966503"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/statements.ts",
+      "sourceSha256": "a038215aa8b9bca1340924b0a14cdb269cee086544567d74ee118cd49d632215",
+      "importSha256": "a038215aa8b9bca1340924b0a14cdb269cee086544567d74ee118cd49d632215"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/store.ts",
+      "sourceSha256": "a631c85b8488eb4e9b972a6aa4ff918c994e3a747e79b027cde3b1c4da697c53",
+      "importSha256": "a631c85b8488eb4e9b972a6aa4ff918c994e3a747e79b027cde3b1c4da697c53"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/wechat/ilink.ts",
+      "sourceSha256": "ba357ad6d2dea0495dbd81d5e00990a7d64779a1ef622524fe860048e93b8083",
+      "importSha256": "ba357ad6d2dea0495dbd81d5e00990a7d64779a1ef622524fe860048e93b8083"
+    },
+    {
+      "path": "packages/dsh-qianlai/src/wechat/index.ts",
+      "sourceSha256": "c9d6183df86e5604e30851f5c20061769fa71826692d3333b96bf91ab13839f6",
+      "importSha256": "c9d6183df86e5604e30851f5c20061769fa71826692d3333b96bf91ab13839f6"
+    },
+    {
+      "path": "packages/dsh-qianlai/tests/assist.spec.ts",
+      "sourceSha256": "9f955893ff6610a03c15f9034e87cdbdc6f8a4d5bf7ac8bb42b0c2a130d2a438",
+      "importSha256": "9f955893ff6610a03c15f9034e87cdbdc6f8a4d5bf7ac8bb42b0c2a130d2a438"
+    },
+    {
+      "path": "packages/dsh-qianlai/tests/book.spec.ts",
+      "sourceSha256": "16273ea60e0fada064d16355eeafe03325bbf757927ab24178df4ee33312f9c1",
+      "importSha256": "16273ea60e0fada064d16355eeafe03325bbf757927ab24178df4ee33312f9c1"
+    },
+    {
+      "path": "packages/dsh-qianlai/tests/flow.spec.ts",
+      "sourceSha256": "a82e949e6978ca2ec0c256ce75535d727b65f4e802872b49e5a0253e09d58d74",
+      "importSha256": "a82e949e6978ca2ec0c256ce75535d727b65f4e802872b49e5a0253e09d58d74"
+    },
+    {
+      "path": "packages/dsh-qianlai/tests/tools.spec.ts",
+      "sourceSha256": "6127ffc61b3549887345850279a04a76fb4b68868c021b07c64aa408bc68f533",
+      "importSha256": "6127ffc61b3549887345850279a04a76fb4b68868c021b07c64aa408bc68f533"
+    },
+    {
+      "path": "packages/dsh-qianlai/tests/wechat-channel.spec.ts",
+      "sourceSha256": "b2a763dbf00cff87543df0c9b50a9697109d34aaf866bc5772f8a14951d3f83b",
+      "importSha256": "b2a763dbf00cff87543df0c9b50a9697109d34aaf866bc5772f8a14951d3f83b"
+    },
+    {
+      "path": "packages/dsh-qianlai/tests/wechat-runtime.test.mjs",
+      "sourceSha256": "be14d1a96da278956eefabd7bbfe7e6a5fdfc566f14fb939efa5188285fa9de0",
+      "importSha256": "be14d1a96da278956eefabd7bbfe7e6a5fdfc566f14fb939efa5188285fa9de0"
+    },
+    {
+      "path": "packages/dsh-qianlai/tests/wechat.spec.ts",
+      "sourceSha256": "07e72418a0f462117bb6171d4a396a29750b71b422fc55e63cd11eab9c0356ee",
+      "importSha256": "07e72418a0f462117bb6171d4a396a29750b71b422fc55e63cd11eab9c0356ee"
+    },
+    {
+      "path": "packages/dsh-qianlai/tsconfig.json",
+      "sourceSha256": "65fdb01619c7ccd0d2715bb44b732141f87cf0b24a72625a71ac1e3afb8860a4",
+      "importSha256": "65fdb01619c7ccd0d2715bb44b732141f87cf0b24a72625a71ac1e3afb8860a4"
+    },
+    {
+      "path": "packages/dsh-qianlai/tsconfig.test.json",
+      "sourceSha256": "e61cfe10d335222b816026ad66fe6a80b9c2b57aa517f3faf769d8cb81fd85ea",
+      "importSha256": "e61cfe10d335222b816026ad66fe6a80b9c2b57aa517f3faf769d8cb81fd85ea"
+    },
+    {
+      "path": "packages/dsh-qianlai/vitest.config.ts",
+      "sourceSha256": "53abfb9ea0ff2e23ec27367ec04ad787035a4a833e2725b7ec436d3a37d26142",
+      "importSha256": "53abfb9ea0ff2e23ec27367ec04ad787035a4a833e2725b7ec436d3a37d26142"
+    },
+    {
+      "path": "packages/fintax-core/A6-SNAPSHOT.md",
+      "sourceSha256": "94cbf3be95f0c0f9dd135c7cc3a079f1046e6963eb1ea012ff2c503d3bcde141",
+      "importSha256": "94cbf3be95f0c0f9dd135c7cc3a079f1046e6963eb1ea012ff2c503d3bcde141"
+    },
+    {
+      "path": "packages/fintax-core/package.json",
+      "sourceSha256": "c1d54c3e5a933f5ec783a40bd2f526d8da4f254c3102b123063413c85f0b6cb3",
+      "importSha256": "c1d54c3e5a933f5ec783a40bd2f526d8da4f254c3102b123063413c85f0b6cb3"
+    },
+    {
+      "path": "packages/fintax-core/README.md",
+      "sourceSha256": "edaf3b0f91a82902848deff152cfaea495dcc2f6e22c5987b912533b320e1b1e",
+      "importSha256": "edaf3b0f91a82902848deff152cfaea495dcc2f6e22c5987b912533b320e1b1e"
+    },
+    {
+      "path": "packages/fintax-core/README.zh.md",
+      "sourceSha256": "490d0696103135f9f206fe47e76fd18efedc57621212539913d9057f193e3b32",
+      "importSha256": "490d0696103135f9f206fe47e76fd18efedc57621212539913d9057f193e3b32"
+    },
+    {
+      "path": "packages/fintax-core/scripts/a6-diff.mjs",
+      "sourceSha256": "1ad9c33584a870ba11d4cd131e7def50beaf1ed6e4b7937d83401280b92b9be7",
+      "importSha256": "1ad9c33584a870ba11d4cd131e7def50beaf1ed6e4b7937d83401280b92b9be7"
+    },
+    {
+      "path": "packages/fintax-core/scripts/port-from-moneycome.mjs",
+      "sourceSha256": "ee209928c999be0b981fdbbd51a1b955edb30e0465da575d0d8b51487bc4b6fe",
+      "importSha256": "ee209928c999be0b981fdbbd51a1b955edb30e0465da575d0d8b51487bc4b6fe"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-disclosure/figure-certainty.ts",
+      "sourceSha256": "693c200ede4f5996537f6e72ce13f52f9de5ad9b192b51e263497acf18a9c1f2",
+      "importSha256": "693c200ede4f5996537f6e72ce13f52f9de5ad9b192b51e263497acf18a9c1f2"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-handoff/week-key.ts",
+      "sourceSha256": "32a26aee41b3d05ddcfdc5453eb4dfa1128d37f34e144991c1def714b4f7844a",
+      "importSha256": "32a26aee41b3d05ddcfdc5453eb4dfa1128d37f34e144991c1def714b4f7844a"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-intake/book-write.contract.ts",
+      "sourceSha256": "716f809c7b942172069d0c17c2bef39bab0f49d4e65bfa85942d855c567cc58d",
+      "importSha256": "716f809c7b942172069d0c17c2bef39bab0f49d4e65bfa85942d855c567cc58d"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-intake/chinese-amount.ts",
+      "sourceSha256": "1fb011f1514b362d7ef8a3e7743702ada5568bf42286522ad1d0411df47729f1",
+      "importSha256": "1fb011f1514b362d7ef8a3e7743702ada5568bf42286522ad1d0411df47729f1"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-intake/invoice-facts.contract.ts",
+      "sourceSha256": "b406eac7584519744febdf56ff580d19895313e21741e034112e9349c5c155bc",
+      "importSha256": "b406eac7584519744febdf56ff580d19895313e21741e034112e9349c5c155bc"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-intake/invoice-self-checks.ts",
+      "sourceSha256": "745fe0c597c1b68964949404d5406b8e715fe5db3058b7b4ab73e863401c1ea5",
+      "importSha256": "745fe0c597c1b68964949404d5406b8e715fe5db3058b7b4ab73e863401c1ea5"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-intake/invoice-subject-direction.ts",
+      "sourceSha256": "d412dd0c441abdd23d6008efba8dd06b549ae4e7048fc5066e5a0ee03ae25ef8",
+      "importSha256": "d412dd0c441abdd23d6008efba8dd06b549ae4e7048fc5066e5a0ee03ae25ef8"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-intake/material-figures.ts",
+      "sourceSha256": "c37dc45eaa1986232248047fb6f0b66787f0166da947f5cb2b32c16e0fa33d2d",
+      "importSha256": "c37dc45eaa1986232248047fb6f0b66787f0166da947f5cb2b32c16e0fa33d2d"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-intake/material-intake-turn.ts",
+      "sourceSha256": "413f1c362814d2779f07be8d39073f50dfc52bc55b2cf2fef62d05c9b18e048c",
+      "importSha256": "413f1c362814d2779f07be8d39073f50dfc52bc55b2cf2fef62d05c9b18e048c"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-intake/statement-import-checks.ts",
+      "sourceSha256": "0949f114cfba95a33ab29318a0b01974c2ee03e247554b0f924b283079944be8",
+      "importSha256": "0949f114cfba95a33ab29318a0b01974c2ee03e247554b0f924b283079944be8"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-ledger/accounting-pack.contract.ts",
+      "sourceSha256": "033d7ea8f10f77752fe3e5c15e498e899972190c1c898efbf39fcd8719d9db82",
+      "importSha256": "033d7ea8f10f77752fe3e5c15e498e899972190c1c898efbf39fcd8719d9db82"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-ledger/business-date.ts",
+      "sourceSha256": "8df67f28bc20b26e93796bf7846c8c46d36cdbde218220d0d0666e936790045c",
+      "importSha256": "8df67f28bc20b26e93796bf7846c8c46d36cdbde218220d0d0666e936790045c"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-ledger/business-intent.ts",
+      "sourceSha256": "508add29a9c2d683302d69659db9dde4230244b5da9c9ce0ccd1f13c375459d1",
+      "importSha256": "508add29a9c2d683302d69659db9dde4230244b5da9c9ce0ccd1f13c375459d1"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-ledger/ledger-posting.engine.ts",
+      "sourceSha256": "46d39bf82d8fc1f5d04935e0052e6c4ff016b0ec0485dd7ca593b794b20e33b1",
+      "importSha256": "46d39bf82d8fc1f5d04935e0052e6c4ff016b0ec0485dd7ca593b794b20e33b1"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-onboarding/opening-balance.contract.ts",
+      "sourceSha256": "dcb4166d4d4c4fc4c79c52ed2ad4b235c525faac9f7bb538821d4258b3ccd345",
+      "importSha256": "dcb4166d4d4c4fc4c79c52ed2ad4b235c525faac9f7bb538821d4258b3ccd345"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-period/closing-checks.ts",
+      "sourceSha256": "fb5f3d920a65a0e646db2e18bd8fe6405f2b176bea0725478edf5aeebe3bb265",
+      "importSha256": "fb5f3d920a65a0e646db2e18bd8fe6405f2b176bea0725478edf5aeebe3bb265"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-read/book-read.contract.ts",
+      "sourceSha256": "8f84c4c5cb6a4448a9c31e6acaccecf181871c13896d159fefb7e86ea52a7193",
+      "importSha256": "8f84c4c5cb6a4448a9c31e6acaccecf181871c13896d159fefb7e86ea52a7193"
+    },
+    {
+      "path": "packages/fintax-core/src/finance-tasks/question-gate.ts",
+      "sourceSha256": "f1b7433d787c82fcc7689469a28b2739debd439cf1c521fb0fd9bc6c53275c8c",
+      "importSha256": "f1b7433d787c82fcc7689469a28b2739debd439cf1c521fb0fd9bc6c53275c8c"
+    },
+    {
+      "path": "packages/fintax-core/src/index.ts",
+      "sourceSha256": "f179c5bba0a606058b13fc5e2ac48b6edb5643c01969b732aab0e83d7e300ee6",
+      "importSha256": "f179c5bba0a606058b13fc5e2ac48b6edb5643c01969b732aab0e83d7e300ee6"
+    },
+    {
+      "path": "packages/fintax-core/src/message-channel/client-card.renderer.ts",
+      "sourceSha256": "5dccb019b3063926a459898cbaf38a8d7768338776a47ab175573be48437782a",
+      "importSha256": "5dccb019b3063926a459898cbaf38a8d7768338776a47ab175573be48437782a"
+    },
+    {
+      "path": "packages/fintax-core/src/message-channel/message-channel.constants.ts",
+      "sourceSha256": "a513ac0af97328dbdbeb2b4073d6738b1eae043b23d7c810d959b05cb7970ee2",
+      "importSha256": "a513ac0af97328dbdbeb2b4073d6738b1eae043b23d7c810d959b05cb7970ee2"
+    },
+    {
+      "path": "packages/fintax-core/src/message-channel/message-channel.contract.ts",
+      "sourceSha256": "3e45a29ffab468d626507b69baa5d378873149be3f12a3ccd4dee7cc6ecee5f5",
+      "importSha256": "3e45a29ffab468d626507b69baa5d378873149be3f12a3ccd4dee7cc6ecee5f5"
+    },
+    {
+      "path": "packages/fintax-core/src/message-channel/message-channel.registry.ts",
+      "sourceSha256": "31766960ca2fc0f160d0df09f1a958135bc8f8a0dd1dbffdb7de1613f05bcdda",
+      "importSha256": "31766960ca2fc0f160d0df09f1a958135bc8f8a0dd1dbffdb7de1613f05bcdda"
+    },
+    {
+      "path": "packages/fintax-core/src/message-channel/wechat-text.renderer.ts",
+      "sourceSha256": "16846eef9788ee6ce34d258dd1bcde974c3263008539ed2abda58c20f7d6f1b8",
+      "importSha256": "16846eef9788ee6ce34d258dd1bcde974c3263008539ed2abda58c20f7d6f1b8"
+    },
+    {
+      "path": "packages/fintax-core/src/shared/time/accounting-time-zone.ts",
+      "sourceSha256": "6252de2b26d87a41e06af0ce06641a3edd0ff2550d6cb7eddc8f157eb0816a61",
+      "importSha256": "6252de2b26d87a41e06af0ce06641a3edd0ff2550d6cb7eddc8f157eb0816a61"
+    },
+    {
+      "path": "packages/fintax-core/src/shims/prisma-client.ts",
+      "sourceSha256": "20a21f4a75ba3e88704b97e1251d92a70f502c799ed395b409455f3d187f1ac0",
+      "importSha256": "20a21f4a75ba3e88704b97e1251d92a70f502c799ed395b409455f3d187f1ac0"
+    },
+    {
+      "path": "packages/fintax-core/tests/arch/no-domain-constants.spec.ts",
+      "sourceSha256": "bcc918cbc2fabbb844a895a8d75c656714e600e13edfd8d676fc51e12ff34056",
+      "importSha256": "bcc918cbc2fabbb844a895a8d75c656714e600e13edfd8d676fc51e12ff34056"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-disclosure/figure-certainty.spec.ts",
+      "sourceSha256": "6e9d30f46337cdccbb09084f067aa70458c08dce5e840723e370838adecab672",
+      "importSha256": "6e9d30f46337cdccbb09084f067aa70458c08dce5e840723e370838adecab672"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-handoff/week-key.spec.ts",
+      "sourceSha256": "4c4bea04b81d6b40e7def3ee519b4f1d44f1c7fe686d39d16115142234b53e9b",
+      "importSha256": "4c4bea04b81d6b40e7def3ee519b4f1d44f1c7fe686d39d16115142234b53e9b"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-intake/invoice-self-checks.spec.ts",
+      "sourceSha256": "cab135f0203255fdaaf9696f07cdaa93c5d1d611158b0742687815b077e473ec",
+      "importSha256": "cab135f0203255fdaaf9696f07cdaa93c5d1d611158b0742687815b077e473ec"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-intake/invoice-subject-direction.spec.ts",
+      "sourceSha256": "4fa861cef91c08350185fca935429695fcf3ffba0d3a4caef64377b51bb8b961",
+      "importSha256": "4fa861cef91c08350185fca935429695fcf3ffba0d3a4caef64377b51bb8b961"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-intake/statement-import-checks.spec.ts",
+      "sourceSha256": "917c241bc0e1a65b07f6f11f75bae8527aebd4b89e7e4d5f5115d71847070a42",
+      "importSha256": "917c241bc0e1a65b07f6f11f75bae8527aebd4b89e7e4d5f5115d71847070a42"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-ledger/business-date.spec.ts",
+      "sourceSha256": "bf9791e85fa2cc710168c4de82f8194e7da1f87225261867dedb9750cb3f950b",
+      "importSha256": "bf9791e85fa2cc710168c4de82f8194e7da1f87225261867dedb9750cb3f950b"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-ledger/finance-ledger-accounting-pack.spec.ts",
+      "sourceSha256": "66f9a34ce975dc4b0f9d85141daa14fe9d4cf7361f51fae8ae9972f754299cca",
+      "importSha256": "66f9a34ce975dc4b0f9d85141daa14fe9d4cf7361f51fae8ae9972f754299cca"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-ledger/fixtures/accounting-packs.ts",
+      "sourceSha256": "b3d815c4d3adc075b89c739eab228c076f52d466aced2908b32712aefd386c0d",
+      "importSha256": "b3d815c4d3adc075b89c739eab228c076f52d466aced2908b32712aefd386c0d"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-ledger/ledger-posting-engine.spec.ts",
+      "sourceSha256": "6aed49b9ff284e1e6e0546f6de8eec1b9f1461152e55225e984cc6f341dca9eb",
+      "importSha256": "6aed49b9ff284e1e6e0546f6de8eec1b9f1461152e55225e984cc6f341dca9eb"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-ledger/pack-swap.spec.ts",
+      "sourceSha256": "993fb663bf09c2f193eba9cb50a28e357c38fedf99012d75e8f0511150e17bdd",
+      "importSha256": "993fb663bf09c2f193eba9cb50a28e357c38fedf99012d75e8f0511150e17bdd"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-period/closing-checks.spec.ts",
+      "sourceSha256": "0a43968c76003c989dcaceaa4de5d6eeca213e770acf839b04c57de425147606",
+      "importSha256": "0a43968c76003c989dcaceaa4de5d6eeca213e770acf839b04c57de425147606"
+    },
+    {
+      "path": "packages/fintax-core/tests/finance-tasks/question-gate.spec.ts",
+      "sourceSha256": "c473d4922ac703ea8f0ccc65221be703d14843ec898a653ef45280cb318d4e76",
+      "importSha256": "c473d4922ac703ea8f0ccc65221be703d14843ec898a653ef45280cb318d4e76"
+    },
+    {
+      "path": "packages/fintax-core/tests/message-channel/message-channel-dual-render.spec.ts",
+      "sourceSha256": "3c7657703a0715f5d008a15e6ee61237acdfa1f255b65be96e239bee367a5011",
+      "importSha256": "3c7657703a0715f5d008a15e6ee61237acdfa1f255b65be96e239bee367a5011"
+    },
+    {
+      "path": "packages/fintax-core/tsconfig.json",
+      "sourceSha256": "4fcb6c2f516eb815df868f705a3f6877ba8ab4680228f0305b6a5e5b2e7adbbb",
+      "importSha256": "4fcb6c2f516eb815df868f705a3f6877ba8ab4680228f0305b6a5e5b2e7adbbb"
+    },
+    {
+      "path": "packages/fintax-core/tsconfig.test.json",
+      "sourceSha256": "7602e2d7f5ca2cb0864db7369afe1195aed84a955b1176ae483e8171d9dd4149",
+      "importSha256": "7602e2d7f5ca2cb0864db7369afe1195aed84a955b1176ae483e8171d9dd4149"
+    },
+    {
+      "path": "packages/fintax-core/vitest.config.ts",
+      "sourceSha256": "cfc061d346a284c55f5dc020f12c0a5cae9e9f9ac296f71b94e2e7fa99af15c4",
+      "importSha256": "cfc061d346a284c55f5dc020f12c0a5cae9e9f9ac296f71b94e2e7fa99af15c4"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  // tests/ 的 typecheck 口径。主 tsconfig 只 include src（它要 emit 到 lib），
+  // tests/ 于是从来没进过门禁——评审指出这一点，这个配置把它补上，接在
+  // `pnpm typecheck` 后面跑。
+  //
+  // 与主 tsconfig 的差别只有三处，全是环境差异，不是放松检查：
+  //   - rootDir 抬到包根，好让 tests/ 与 src/ 同处一个 program；
+  //   - noEmit，这一趟只查不产出；
+  //   - types 加 vitest/globals，搬来的 spec 沿用 jest 的隐式全局（见 vitest.config.ts）。
+  //
+  // exclude 里那一份是**对不齐的债，不是环境差异**：`finance-ledger-accounting-pack.spec.ts`
+  // 有 6 处类型错（47、78、196、197、199、200 行），实测把 compilerOptions 换成
+  // moneycome `harness/tsconfig.json` 的原口径后这 6 处照报——它们是 `as const`
+  // fixture 的 readonly 与 zod 联合类型窄化问题，跟严格开关无关。消掉要改断言，
+  // 而断言原样搬入是本包的前提。逐条见 README「已知限制」。
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": ["src", "tests"],
+  "exclude": ["tests/finance-ledger/finance-ledger-accounting-pack.spec.ts"]
+}

@@ -15,17 +15,18 @@
 
 ## 当前验证范围
 
-本仓库只有文档、许可文件和 `.github/` 协作配置，没有 `package.json`、
-插件包或 CI 工作流。文档 PR 核对双语一致、相对链接和页面显示；
-表单 PR 核对 YAML、字段顺序、真实标签，并在合入后检查 New issue 页面。
-不要宣传或运行尚不存在的安装、构建和测试命令。
+源码检查：`pnpm install --frozen-lockfile` 后运行 `pnpm build`、`pnpm typecheck`、`pnpm lint`、`pnpm test`。使用 package.json 声明的 Node 范围和 pnpm 12.3.4。Q-008 材料另运行 `node packages/dsh-qianlai/e2e/q008/run.mjs --validate`。
 
-## 后续源码贡献
+微信加载验证使用合成 iLink：`node --test packages/dsh-qianlai/tests/wechat-runtime.test.mjs`；隔离真实 DSH 检查：`node packages/dsh-qianlai/scripts/check-dsh-wechat.mjs <DSH CLI 路径>`。这不等于真实微信扫码、真实消息或模型验收。
+
+遵守 docs/maintaining.md：不为本次合并启用或启动远端 CI，历史工作流仅以非工作流文件归档。本地检查、历史跨系统 CI 和收费模型结果分别记录。文档/表单核对双语、链接、YAML 与页面；涉及 UI、微信或人设逻辑的后续修改还需隔离宿主的对应运行验证。
+
+## 财税核心与运行贡献
 
 接入源码后补充实际工具版本、目录和验证命令。若接入内部上游复制的
 `fintax-core`，外部贡献者可提供问题、虚构案例和期望结果；复制文件的修改先联系维护者，
 由维护者处理内部修复、同步和 A6 对比，并在公开 Issue / PR 保留进度与贡献归属。
-外部贡献者不需要内部仓库权限。这不表示核心代码现在已在本仓库中。
+外部贡献者不需要内部仓库权限。复制快照和内部来源记录已保留；本次导入不重写核心逻辑。
 
 运行验证使用独立 `DSH_HOME` 和合成数据。真实 API 模型测试有费用，不因文档检查自动启动。
 不得提交密钥、真实票据、流水、账本、微信登录文件、带 token 的 URL 或私人聊天记录。
@@ -39,19 +40,8 @@
 
 ## English
 
-Only community materials are currently present. Documentation, translations and
-synthetic use cases are welcome. Fork, branch from main, make a focused change
-and open a PR with actual validation results. Discuss large changes first.
-Use the [nine-field guide](docs/issue-reporting.md) for bugs.
+This branch includes source packages and a local build environment. Fork and branch from main, make focused changes, use synthetic data, report actual validation, and discuss large changes first. Use the public issue numbers/severity rules and existing PR template.
 
-There are no source packages, build commands or CI workflows here yet. Validate
-links, language consistency, YAML and issue-form behavior as appropriate.
-When copied financial-core source is introduced, maintainers will handle internal
-upstream fixes, synchronization and A6 comparison. External contributors can
-provide synthetic cases without internal access; progress and attribution remain public.
-Runtime checks require an isolated DSH_HOME. Paid model tests are separate work.
-Never submit credentials or private financial records.
+Run the frozen-lockfile install, build, typecheck, lint and test locally; validate the Q-008 kit offline separately. Compiled WeChat and isolated DSH/mock-iLink checks are not real WeChat/model acceptance. Hosted CI is not enabled under docs/maintaining.md; archived historical workflow/results are provenance only.
 
-The initial maintainer is @peyton-v5. Changes use PRs, complete diff review and
-relevant local validation. No response deadline or unrun CI success is claimed.
-Contributions use Apache-2.0, without copyright assignment or an additional CLA.
+Do not hand-edit copied fintax-core logic: contact maintainers for upstream repair, synchronization and A6 comparison. External contributors need no internal access. Use an isolated DSH_HOME; paid model tests are explicit and separate. No credentials, private chats or real financial data. Contributions use Apache-2.0 without copyright assignment or additional CLA; artwork restrictions are retained.

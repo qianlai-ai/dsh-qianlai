@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "issue": "Q-008 / GitHub #9",
+  "hashEncoding": "utf8-lf",
+  "scope": "仅本次发布的八个文件；不表示本机全部旧测试目录都已完成隐私审查。",
+  "method": [
+    "从冻结合成测试按字段白名单导出",
+    "所有发布文件与已授权使用的实际测试 Key 做内存中的精确匹配检查，不记录 Key 或其摘要",
+    "扫描常见 Key、登录 token、本机用户名/路径、微信标识、手机号、邮箱及身份号码",
+    "人工复核全部模式匹配项，保留合成测试中的虚构故事证据",
+    "剔除原始文件链接；不复制凭据、会话目录、内部推理、原始工具参数/结果或数据库"
+  ],
+  "knownCredentialMatches": 0,
+  "unresolvedFindings": 0,
+  "reviewedNonSensitiveMatches": [
+    {
+      "file": "run.mjs",
+      "kind": "urlToken",
+      "line": 163,
+      "conclusion": "匹配启动地址的正则表达式定义，不含实际登录 token"
+    },
+    {
+      "file": "run.mjs",
+      "kind": "localWindowsPath",
+      "line": 76,
+      "conclusion": "虚构 Example 用户路径，仅用于脱敏自检，不是原作者路径"
+    }
+  ],
+  "excludedData": [
+    "real user conversations",
+    "credentials",
+    "API headers",
+    "cookies",
+    "session/account IDs",
+    "raw host system/runtime context dumps (persona source configs are intentionally included)",
+    "model reasoning",
+    "raw tool arguments/results",
+    "databases",
+    "private test homes",
+    "original local scripts",
+    "local machine paths"
+  ],
+  "records": {
+    "cases": 24,
+    "selectedSessions": 24,
+    "baselineProblemGroups": 6,
+    "baselineProblemTurns": 11,
+    "sourceInputs": "synthetic fixed scripts",
+    "inventedBiographicalReplies": "模型在合成测试中生成的虚构内容，不是真实个人资料"
+  },
+  "verification": {
+    "offlineMaterialValidation": "passed",
+    "actualDshStartup": "passed",
+    "liveSmoke": {
+      "platform": "Windows",
+      "node": "24.18.0",
+      "dsh": "0.2.1-rc.3",
+      "variants": [
+        "baseline",
+        "accepted"
+      ],
+      "cases": [
+        "C01",
+        "C03"
+      ],
+      "runs": 4,
+      "userTurns": 4,
+      "bookChecks": 20,
+      "bookFailures": 0,
+      "scope": "便携驱动与附件链路；不重新计算人设发生率"
+    },
+    "otherPlatforms": "离线校验与现有 CI 以实际结果为准，未重跑真模型压力批次"
+  },
+  "sha256": {
+    "README.md": "0d9243225f269fd2ee4597079049a65268bfdb0183cd36c4a7312a23ac270d27",
+    "cases.json": "a6eb59d3dbf7e91d5747e570ea35449a87d1bfc7d29b035b29059bf93732ecf2",
+    "evidence.json": "d2433e01f99c1239ac8ca6d2f5291834f5894f709dd81d43ed5561c91c0c8135",
+    "original-failures.md": "a5f58948c383c0d448b7996481b2c931cd800b34639a45996b6efe2943d8fba1",
+    "personas.json": "686a352c92f17ef8b37b4194d011fc0d5d16a72876f5a69f8d61c235a70ca137",
+    "review.md": "5afe5e5b4856ab46c6282d91b94d9969e83865e548df788678a1e4014cbf0173",
+    "run.mjs": "7bb9a7efc15ca7192bb031b0471c05983e5b392c7ceff34f13277ed05f31a708"
+  },
+  "publicMigration": {
+    "date": "2026-10-30",
+    "sourceCommit": "dad68cf856fae0bb2bb2ea954f6e9400a0e69098",
+    "publicIssue": "https://github.com/qianlai-ai/dsh-qianlai/issues/9",
+    "changes": "README 改为公开问题链接，移除私库权限前置说明；材料内容及驱动不改。重新计算 UTF-8/LF 哈希。",
+    "scope": "原八文件白名单；原始会话、凭据、内部推理和真实账本不迁入。"
+  }
+}
