@@ -23,6 +23,7 @@ pnpm build
 pnpm typecheck
 pnpm lint
 pnpm test
+pnpm audit --prod --json
 node --test packages/dsh-qianlai/tests/wechat-runtime.test.mjs
 node packages/dsh-qianlai/scripts/check-dsh-wechat.mjs /absolute/path/to/dsh/lib/bin.js
 node packages/dsh-qianlai/e2e/q008/run.mjs --validate
@@ -30,6 +31,7 @@ git diff --check
 ```
 
 - Build, typecheck and lint: passed. Unit tests: **309 core + 79 plugin = 388 passed**.
+- Runtime dependency audit found GHSA-mrhx-c7xc-m3w5 in existing Zod 4.4.3. Updated the core package dependency to `^4.6.6` without editing copied source/tests, then reran the full local checks. The final runtime audit reports zero vulnerabilities.
 - Compiled WeChat runtime: ordinary link passed; Windows junction case skipped on macOS.
 - Real DSH install/activation with synthetic iLink: QR login and saved-login restart passed.
 - Q-008 historical material validation: 24 cases / three variants passed, zero model requests.
