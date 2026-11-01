@@ -31,7 +31,7 @@ git diff --check
 ```
 
 - Build, typecheck and lint: passed. Unit tests: **309 core + 79 plugin = 388 passed**.
-- Runtime dependency audit found GHSA-mrhx-c7xc-m3w5 in existing Zod 4.4.3. Updated the core package dependency to `^4.6.6` without editing copied source/tests, then reran the full local checks. The final runtime audit reports zero vulnerabilities.
+- Runtime dependency audit found GHSA-mrhx-c7xc-m3w5 in existing Zod 4.4.3. Updated the core package dependency to `^4.6.7` (the advisory fixes versions starting at 4.6.6) without editing copied source/tests, then reran the full local checks. The final runtime audit reports zero vulnerabilities.
 - Compiled WeChat runtime: ordinary link passed; Windows junction case skipped on macOS.
 - Real DSH install/activation with synthetic iLink: QR login and saved-login restart passed.
 - Q-008 historical material validation: 24 cases / three variants passed, zero model requests.
